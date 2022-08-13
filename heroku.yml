@@ -1,5 +1,6 @@
+# used when heroku stack is set to "container" along with Dockerfile
 build:
     docker:
         web: Dockerfile
 run:
-    web: uvicorn main:app
+    web: uvicorn main:app --host 0.0.0.0 --port $PORT
