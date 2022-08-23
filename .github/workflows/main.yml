@@ -1,28 +1,27 @@
-# Your workflow name.
-name: Deploy to heroku.
+name: Deploy
 
-# Run workflow on every push to master branch.
 on:
-    push:
-        branches: [master]
-
-# Your workflows jobs.
+  push:
+    branches:
+      - main
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            # Check-out your repository.
-            - name: Checkout
-              uses: actions/checkout@v2
-        
-            - name: Build, Push and Release a Docker container to Heroku.
-              uses: gonuit/heroku-docker-deploy@v1.3.3
-              with:
-                email: ${{ secrets.HEROKU_EMAIL }}
-                heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-                heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
-                dockerfile_directory: ./
-                dockerfile_name: Dockerfile
-                docker_options: "--no-cache"
-                process_type: web
-                
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}} #Must be unique in Heroku
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+        env:
+          TASKING_ENV: PROD
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+          DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+          DATABASE_URL_TEST: ${{ secrets.DATABASE_URL_TEST }}
+          DATABASE_USERNAME_TEST: ${{ secrets.DATABASE_USERNAME_TEST }}
+          DATABASE_PASSWORD_TEST: ${{ secrets.DATABASE_PASSWORD_TEST }}
+          DATABASE_NAME_TEST: ${{ secrets.DATABASE_NAME_TEST }}
