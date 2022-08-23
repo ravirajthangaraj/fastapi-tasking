@@ -2,13 +2,18 @@ import os
 
 ENV = os.environ.get('TASKING_ENV', 'dev')
 
+print(f"TASKING_ENV - {ENV}")
+
 
 def read_config():
-    import config
     configuration = {}
-    for setting in dir(config):
-        if not setting.startswith('__'):
-            configuration.update({setting: getattr(config, setting)})
+    try:
+        import config
+        for setting in dir(config):
+            if not setting.startswith('__'):
+                configuration.update({setting: getattr(config, setting)})
+    except ImportError as e:
+        print(e)
     return configuration
 
 
