@@ -1,4 +1,14 @@
 # used when heroku stack is set to "container" along with Dockerfile
+env:
+    SECRET_KEY: ${{ secrets.SECRET_KEY }}
+    DATABASE_URL: ${{ secrets.DATABASE_URL }}
+    DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+    DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+    DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+    DATABASE_URL_TEST: ${{ secrets.DATABASE_URL_TEST }}
+    DATABASE_USERNAME_TEST: ${{ secrets.DATABASE_USERNAME_TEST }}
+    DATABASE_PASSWORD_TEST: ${{ secrets.DATABASE_PASSWORD_TEST }}
+    DATABASE_NAME_TEST: ${{ secrets.DATABASE_NAME_TEST }}
 build:
     docker:
         web: Dockerfile

@@ -3,6 +3,10 @@
 from pymongo.cursor import Cursor
 
 
+def convert_time_zone(timestamp):
+    return str(timestamp)
+
+
 def modify_object_id(result):
     if isinstance(result, dict):  # for single result
         if result.get('_id'):

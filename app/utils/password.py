@@ -1,5 +1,6 @@
 import settings
 
+
 def generate_password(password_string):
     # TODO: implement stronger password hashing
     return f'{password_string}{settings.SECRET_KEY}'

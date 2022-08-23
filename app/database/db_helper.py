@@ -1,18 +1,11 @@
-
-from sqlalchemy.orm import Session
-from app.schemas.user import UserDetail
+from app.database.mongo import db
 
 
-from app.models import user
-
-
-def get_user_by_username(db: Session, username: str) -> UserDetail:
-    return db.query(user.User).filter(user.User.username == username).first()
-
-
-def get_user_by_email(db: Session, email: str) -> UserDetail:
-    return db.query(user.User).filter(user.User.email == email).first()
-
-
-def get_users(db: Session, skip: int = 0, limit: int = 50):
-    return db.query(user.User).offset(skip).limit(limit).all()
+def drop_database(database_name=None):
+    try:
+        if database_name:
+            db.client.drop_database(database_name)
+        else:
+            db.drop_database()
+    except Exception as e:
+        print(e)
