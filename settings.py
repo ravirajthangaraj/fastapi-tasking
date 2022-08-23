@@ -1,10 +1,10 @@
 import os
-import config
 
 ENV = os.environ.get('TASKING_ENV', 'dev')
 
 
 def read_config():
+    import config
     configuration = {}
     for setting in dir(config):
         if not setting.startswith('__'):
