@@ -5,6 +5,7 @@ jobs:
         steps:
         - name: Setup environment
           env:
+            TASKING_ENV: 'PRD'
             SECRET_KEY: ${{ secrets.SECRET_KEY }}
             DATABASE_URL: ${{ secrets.DATABASE_URL }}
             DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
