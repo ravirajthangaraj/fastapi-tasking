@@ -1,11 +1,6 @@
-build:
-    docker:
-        web: Dockerfile
-run:
-    web: uvicorn main:app --host 0.0.0.0 --port $PORT
 setup:
     config:
-        TASKING_ENV: 'PRD'
+        TASKING_ENV: 'PROD'
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
         DATABASE_URL: ${{ secrets.DATABASE_URL }}
         DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
@@ -15,3 +10,8 @@ setup:
         DATABASE_USERNAME_TEST: ${{ secrets.DATABASE_USERNAME_TEST }}
         DATABASE_PASSWORD_TEST: ${{ secrets.DATABASE_PASSWORD_TEST }}
         DATABASE_NAME_TEST: ${{ secrets.DATABASE_NAME_TEST }}
+build:
+    docker:
+        web: Dockerfile
+run:
+    web: uvicorn main:app --host 0.0.0.0 --port $PORT
