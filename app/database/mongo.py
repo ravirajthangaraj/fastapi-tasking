@@ -36,7 +36,7 @@ class MongoDB(Database):
 
     def get(self, collection_name, query, *args, **kwargs):
         kwargs.setdefault('exclude_fields', {})
-        exclude_fields = {'_id': 0}
+        exclude_fields = {}
         exclude_fields.update(kwargs.get('exclude_fields'))
 
         result = self.database[collection_name].find(query, exclude_fields)
@@ -44,7 +44,7 @@ class MongoDB(Database):
 
     def retrieve(self, collection_name, query, *args, **kwargs):
         kwargs.setdefault('exclude_fields', {})
-        exclude_fields = {'_id': 0}
+        exclude_fields = {}
         exclude_fields.update(kwargs.get('exclude_fields'))
 
         result = self.database[collection_name].find_one(query, exclude_fields)
