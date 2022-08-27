@@ -38,3 +38,7 @@ class UserCreate(BaseModel):
 class AuthenticateUser(BaseModel):
     username: str
     password: str
+
+
+class UserAuthenticated(BaseModel):
+    access_token: str
